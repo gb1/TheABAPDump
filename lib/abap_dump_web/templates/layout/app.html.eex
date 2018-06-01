@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>THE ABAP DUMP</title>
+  
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">THE ABAP DUMP</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/post">Post</a></li>
+              <li><a href="#about">Chat</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <hr/>
+
+              <%= if veil_user_id = assigns[:veil_user_id] do %>
+                Authenticated as <%= veil_user_id %>
+                <a href="<%= session_path(@conn, :delete, @session_unique_id) %>">Sign out</a>
+              <% else %>
+                <a href="<%= user_path(@conn, :new) %>">Sign in</a>
+              <% end %>
+              <p>yo</p>
+
+        <%= render @view_module, @view_template, assigns %>
+    
+
+    </div> <!-- /container -->
+    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="http://code.jquery.com/jquery.js"></script>
+  </body>
+</html>

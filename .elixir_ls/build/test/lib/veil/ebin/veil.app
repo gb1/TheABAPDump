@@ -1,0 +1,11 @@
+{application,veil,
+             [{applications,[kernel,stdlib,elixir,logger,quantum,
+                             phoenix_swoosh,swoosh]},
+              {description,"Simple passwordless authentication for your Phoenix apps."},
+              {modules,['Elixir.Mix.Tasks.Veil.Add','Elixir.Veil',
+                        'Elixir.Veil.Application','Elixir.Veil.Scheduler',
+                        'Elixir.Veil.Secret','Elixir.Veil.Secure']},
+              {registered,[]},
+              {vsn,"0.1.5"},
+              {mod,{'Elixir.Veil',[]}},
+              {extra_applications,[logger]}]}.

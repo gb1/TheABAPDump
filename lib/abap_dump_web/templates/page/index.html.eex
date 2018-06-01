@@ -1,0 +1,33 @@
+<div class="hero-unit">
+        <h1>WELCOME TO THE ABAP DUMP</h1>
+        <p>This is a place to share pearls of wisdom with your fellow Allgemeiner Berichts-Aufbereitungs-Prozessor aficionados</p>
+        <p>Turns off the lights, pours a glass of scotch, puts on some light German electronica and enjoy some fine ABAP</p>
+</div>
+
+<p class="lead">LATEST ABAP PEARLS</p>
+
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Author</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for pearl <- @pearls do %>
+    <tr>
+      <td><%= pearl.title %></td>
+      <td><%= pearl.description %></td>
+      <td><%= pearl.author_id %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: pearl_path(@conn, :show, pearl), class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

@@ -1,0 +1,5 @@
+<h2>Edit Pearl</h2>
+
+<%= render "form.html", Map.put(assigns, :action, pearl_path(@conn, :update, @pearl)) %>
+
+<span><%= link "Back", to: pearl_path(@conn, :index) %></span>

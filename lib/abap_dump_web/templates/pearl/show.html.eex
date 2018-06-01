@@ -1,0 +1,25 @@
+<ul>
+  <li>
+    <strong>Author:</strong>
+    <%= @pearl.author_id %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @pearl.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @pearl.description %>
+  </li>
+
+</ul>
+
+<div class="container">
+
+  <pre class="language-abap line-numbers" contenteditable="true"><code class="language-abap">
+    <%= @pearl.code %>
+  </code></pre>
+
+</div>
