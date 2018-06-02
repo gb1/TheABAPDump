@@ -5,10 +5,22 @@
     </div>
   <% end %>
 
+<div class="hero-unit">
+        <h1>SIGN IN</h1>
+        <p>No pesky usernames and passwords to remember!</p>
+        <p>Enter your email and you'll get a link to access the site</p>
+</div>
+
   <div class="form-group">
     <%= label f, :email, class: "control-label" %>
     <%= text_input f, :email, class: "form-control" %>
     <%= error_tag f, :email %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :username, class: "control-label" %>
+    <%= text_input f, :username, class: "form-control" %>
+    <%= error_tag f, :username %>
   </div>
 
   <div class="form-group">

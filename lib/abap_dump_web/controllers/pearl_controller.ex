@@ -1,5 +1,7 @@
 defmodule AbapDumpWeb.PearlController do
   use AbapDumpWeb, :controller
+  require IEx
+
 
   alias AbapDump.TAD
   alias AbapDump.TAD.Pearl
@@ -15,6 +17,9 @@ defmodule AbapDumpWeb.PearlController do
   end
 
   def create(conn, %{"pearl" => pearl_params}) do
+
+    # IEx.pry
+
     case TAD.create_pearl(pearl_params) do
       {:ok, pearl} ->
         conn

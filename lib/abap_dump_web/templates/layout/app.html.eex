@@ -10,7 +10,6 @@
   
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
 
-
   </head>
 
   <body>
@@ -27,30 +26,30 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="/post">Post</a></li>
+              <li><a href="/pearls/new">Post</a></li>
               <li><a href="#about">Chat</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="container">
-
-      <hr/>
-
+            <form class="navbar-form pull-right">
+              
               <%= if veil_user_id = assigns[:veil_user_id] do %>
                 Authenticated as <%= veil_user_id %>
                 <a href="<%= session_path(@conn, :delete, @session_unique_id) %>">Sign out</a>
               <% else %>
                 <a href="<%= user_path(@conn, :new) %>">Sign in</a>
               <% end %>
-              <p>yo</p>
 
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
         <%= render @view_module, @view_template, assigns %>
     
-
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="http://code.jquery.com/jquery.js"></script>
