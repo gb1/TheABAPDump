@@ -8,6 +8,7 @@ defmodule AbapDumpWeb.Router do
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
     plug(AbapDumpWeb.Plugs.Veil.UserId)
+    plug(AbapDumpWeb.Plugs.SetUser)
   end
 
   pipeline :api do
@@ -20,13 +21,21 @@ defmodule AbapDumpWeb.Router do
 
     get("/", PageController, :index)
     get("/post", PostController, :index)
-    resources "/pearls", PearlController
+    resources("/pearls", PearlController)
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", AbapDumpWeb do
   #   pipe_through :api
   # end
+
+  scope "/auth", AbapDumpWeb do
+    pipe_through(:browser)
+
+    get("/signout", AuthController, :delete)
+    get("/:provider", AuthController, :request)
+    get("/:provider/callback", AuthController, :new)
+  end
 
   # Default Routes for Veil
   scope "/veil", AbapDumpWeb.Veil do

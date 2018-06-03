@@ -25,13 +25,13 @@ defmodule AbapDumpWeb.ChannelCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(AbapDump.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(AbapDump.Repo, {:shared, self()})
     end
+
     :ok
   end
-
 end

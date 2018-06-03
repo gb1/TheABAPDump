@@ -7,12 +7,11 @@ defmodule AbapDumpWeb.Veil.LoginEmail do
   def generate(email, url) do
     site = Application.get_env(:veil, :site_name)
 
-   new()
+    new()
     |> to(email)
     |> from(from_email())
     |> subject("Welcome to #{site}!")
     |> render_body("login.html", %{url: url, site_name: site})
-
   end
 
   defp from_email do

@@ -6,8 +6,18 @@ defmodule AbapDump.TADTest do
   describe "pearls" do
     alias AbapDump.TAD.Pearl
 
-    @valid_attrs %{author_id: 42, code: "some code", description: "some description", title: "some title"}
-    @update_attrs %{author_id: 43, code: "some updated code", description: "some updated description", title: "some updated title"}
+    @valid_attrs %{
+      author_id: 42,
+      code: "some code",
+      description: "some description",
+      title: "some title"
+    }
+    @update_attrs %{
+      author_id: 43,
+      code: "some updated code",
+      description: "some updated description",
+      title: "some updated title"
+    }
     @invalid_attrs %{author_id: nil, code: nil, description: nil, title: nil}
 
     def pearl_fixture(attrs \\ %{}) do

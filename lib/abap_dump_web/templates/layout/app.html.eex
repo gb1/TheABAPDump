@@ -27,29 +27,41 @@
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
               <li><a href="/pearls/new">Post</a></li>
-              <li><a href="#about">Chat</a></li>
-              <li><a href="#contact">Contact</a></li>
             </ul>
 
             <form class="navbar-form pull-right">
-              
+
+              <!--
               <%= if veil_user_id = assigns[:veil_user_id] do %>
                 Authenticated as <%= veil_user_id %>
                 <a href="<%= session_path(@conn, :delete, @session_unique_id) %>">Sign out</a>
               <% else %>
                 <a href="<%= user_path(@conn, :new) %>">Sign in</a>
               <% end %>
+              -->
 
-
+              <%= if @conn.assigns[:user] do %>
+                 <%= link "Sign out " <> @conn.assigns.user.name, to: auth_path(@conn, :delete), class: "button" %>
+              <% else %>
+                <%= link "Sign in with Google", to: auth_path(@conn, :request, "google", scope: "email profile"), class: "button" %>
+               <% end %>
             </form>
           </div>
         </div>
       </div>
     </div>
 
+    <hr/>
+    <hr/>
+    <hr/>
+    <p role="alert"><%= get_flash(@conn, :info) %></p>
+    <p role="alert"><%= get_flash(@conn, :error) %></p>
+
+    <main role="main">
     <div class="container">
         <%= render @view_module, @view_template, assigns %>
-    
+    </main>
+
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
     <script src="http://code.jquery.com/jquery.js"></script>

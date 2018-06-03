@@ -2,9 +2,10 @@ defmodule AbapDumpWeb.PearlController do
   use AbapDumpWeb, :controller
   require IEx
 
-
   alias AbapDump.TAD
   alias AbapDump.TAD.Pearl
+
+  require IEx
 
   def index(conn, _params) do
     pearls = TAD.list_pearls()
@@ -13,18 +14,25 @@ defmodule AbapDumpWeb.PearlController do
 
   def new(conn, _params) do
     changeset = TAD.change_pearl(%Pearl{})
-    render(conn, "new.html", changeset: changeset)
+    if conn.assigns[:user] do
+      render(conn, "new.html", changeset: changeset)
+    else
+      conn
+      |> put_flash(:info, "Login to post")
+      |> redirect(to: "/")
+    end
   end
 
   def create(conn, %{"pearl" => pearl_params}) do
 
-    # IEx.pry
+    pearl_params |> Map.put_new("name", conn.assigns[:user].name)
 
     case TAD.create_pearl(pearl_params) do
       {:ok, pearl} ->
         conn
         |> put_flash(:info, "Pearl created successfully.")
         |> redirect(to: pearl_path(conn, :show, pearl))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -49,6 +57,7 @@ defmodule AbapDumpWeb.PearlController do
         conn
         |> put_flash(:info, "Pearl updated successfully.")
         |> redirect(to: pearl_path(conn, :show, pearl))
+
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", pearl: pearl, changeset: changeset)
     end
